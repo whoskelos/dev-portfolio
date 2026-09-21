@@ -1,0 +1,36 @@
+@import "@fontsource-variable/manrope";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  /* Backgrounds (60%) */
+  --color-bg-base: #f5f5f0;
+  --color-bg-surface: #eaeae3;
+  --color-bg-elevated: #ffffff;
+
+  /* Typography */
+  --color-text-main: #1c1917;
+  --color-text-muted: #57534e;
+  --color-text-light: #a8a29e;
+
+  /* Brand / CTA (10%) */
+  --color-brand-primary: #059669;
+  --color-brand-hover: #047857;
+  --color-brand-soft: #e6f4ea;
+
+  /* Borders */
+  --color-border-subtle: #e7e5e4;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-soft);
+    color: var(--color-text-main);
+  }
+}

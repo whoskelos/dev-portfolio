@@ -1,0 +1,159 @@
+{
+  "site": {
+    "title": "Desarrollo de páginas web, aplicaciones y automatizaciones que escalan tu negocio.",
+    "brand": {
+      "name": "Kelvin Guerrero",
+      "initial": "K"
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/kelvinguerreromite/"
+    }
+  },
+  "navbar": {
+    "cta": {
+      "label": "Hablemos",
+      "href": "#contacto"
+    },
+    "links": [
+      { "label": "Servicios", "href": "#servicios" },
+      { "label": "Proyectos", "href": "#proyectos" },
+      { "label": "Proceso", "href": "#proceso" }
+    ],
+    "social": {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/kelvinguerreromite/"
+    }
+  },
+  "hero": {
+    "badge": "Disponible para nuevos proyectos",
+    "headline": {
+      "before": "Desarrollo de páginas web, aplicaciones y automatizaciones que",
+      "highlight": "escalan",
+      "after": "tu negocio."
+    },
+    "subtitle": {
+      "before": "Soy ",
+      "emphasis": "Kelvin Guerrero",
+      "after": ", consultor y desarrollador web freelance. Creo soluciones web a medida, diseño plataformas de alta conversión y automatizo flujos de trabajo para optimizar la operativa de tu empresa."
+    },
+    "ctas": {
+      "primary": {
+        "label": "Solicitar presupuesto",
+        "href": "#contacto"
+      },
+      "secondary": {
+        "label": "Ver servicios",
+        "href": "#servicios"
+      },
+      "social": {
+        "label": "Conectar en LinkedIn",
+        "href": "https://www.linkedin.com/in/kelvinguerreromite/"
+      }
+    },
+    "stats": [
+      { "value": "+38", "label": "Proyectos entregados" },
+      { "value": "6 años", "label": "De experiencia" },
+      { "value": "98/100", "label": "Media en PageSpeed" },
+      { "value": "2-4 sem", "label": "Plazo medio de entrega" }
+    ]
+  },
+  "services": {
+    "id": "servicios",
+    "title": "Servicios de Desarrollo Web y Automatización",
+    "subtitle": "Soluciones digitales a medida diseñadas para potenciar tu presencia online y optimizar tus procesos.",
+    "items": [
+      {
+        "label": "01",
+        "title": "Creación de Páginas Web y Landing Pages",
+        "description": "Diseño y desarrollo web enfocado en la conversión de clientes, posicionamiento SEO, carga ultra rápida y experiencia de usuario adaptada a dispositivos móviles."
+      },
+      {
+        "label": "02",
+        "title": "Aplicaciones Web y Plataformas a Medida",
+        "description": "Desarrollo de software y aplicaciones web complejas (SaaS, paneles de control, portales de clientes) con código escalable, seguro y fácil de mantener."
+      },
+      {
+        "label": "03",
+        "title": "Automatizaciones e Integraciones Web",
+        "description": "Conexión de tu sitio web con CRMs, pasarelas de pago y herramientas de terceros. Automatizo tareas repetitivas para ahorrar tiempo y reducir errores."
+      }
+    ]
+  },
+  "projects": {
+    "id": "proyectos",
+    "title": "Proyectos",
+    "subtitle": "Páginas web desarrolladas para clientes reales.",
+    "items": [
+      {
+        "image": "recambios-las-margaritas",
+        "client": "Recambios Las Margaritas",
+        "title": "Página web corporativa",
+        "highlight": "Catálogo de recambios y contacto directo",
+        "tags": ["Astro", "Tailwind CSS"],
+        "url": ""
+      },
+      {
+        "image": "aeriatrois",
+        "client": "Aeriatrois",
+        "title": "Página web corporativa",
+        "highlight": "Presencia digital para empresa aeronáutica",
+        "tags": ["Astro", "Tailwind CSS"],
+        "url": ""
+      },
+      {
+        "image": "cybermil",
+        "client": "Cybermil",
+        "title": "Página web corporativa",
+        "highlight": "Web institucional con enfoque en servicios",
+        "tags": ["WordPress"],
+        "url": ""
+      },
+      {
+        "image": "barreto-construcciones",
+        "client": "Barreto Construcciones",
+        "title": "Página web corporativa",
+        "highlight": "Portfolio de obras y captación de clientes",
+        "tags": ["Astro", "Tailwind CSS"],
+        "url": ""
+      }
+    ]
+  },
+  "steps": {
+    "id": "proceso",
+    "title": "Un proceso simple, sin fricción",
+    "items": [
+      {
+        "title": "Llamada de valoración (15-20 min)",
+        "description": "Analizamos las necesidades de tu negocio y definimos los objetivos clave de tu sitio web o aplicación."
+      },
+      {
+        "title": "Propuesta y estrategia técnica",
+        "description": "Recibes un plan claro con alcance, arquitectura web, plazos de entrega y un presupuesto cerrado."
+      },
+      {
+        "title": "Diseño, desarrollo y automatización",
+        "description": "Construyo tu solución web con las tecnologías más eficientes, manteniéndote informado en cada hito."
+      },
+      {
+        "title": "Lanzamiento y optimización",
+        "description": "Publicamos tu web o app optimizada para SEO, velocidad y conversión, garantizando un traspaso sin problemas."
+      }
+    ]
+  },
+  "cta": {
+    "id": "contacto",
+    "title": "¿Tienes un proyecto web o proceso por automatizar?",
+    "description": "Cuéntame qué necesitas y te responderé en menos de 24 horas con una propuesta clara y un plazo concreto.",
+    "email": "hola@kelvinguerrero.dev",
+    "button": {
+      "label": "Solicitar presupuesto sin compromiso",
+      "href": "mailto:hola@kelvinguerrero.dev"
+    }
+  },
+  "footer": {
+    "signature": "Kelvin Guerrero — Consultor & Desarrollador Web",
+    "description": "Creación de páginas web, aplicaciones a medida y automatizaciones.",
+    "copyright": "© 2026 Kelvin Guerrero. Todos los derechos reservados."
+  }
+}
