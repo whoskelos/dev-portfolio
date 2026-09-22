@@ -4,10 +4,10 @@ import content from '../data/content.json';
 const { steps } = content;
 ---
 
-<section id={steps.id} class="bg-bg-surface px-4 py-16 sm:px-6 sm:py-24">
+<section id={steps.id} data-reveal class="bg-bg-surface px-4 py-16 sm:px-6 sm:py-24">
 	<div class="mx-auto max-w-6xl">
 		<h2
-			class="max-w-3xl text-3xl leading-tight font-bold tracking-[-0.03em] text-balance text-text-main sm:text-4xl"
+			class="reveal-header max-w-3xl text-3xl leading-tight font-bold tracking-[-0.03em] text-balance text-text-main sm:text-4xl"
 		>
 			{steps.title}
 		</h2>
@@ -15,7 +15,7 @@ const { steps } = content;
 		<ol class="mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 md:gap-5">
 			{
 				steps.items.map((step, index) => (
-					<li>
+					<li class="reveal-item">
 						<article
 							class="flex h-full items-start gap-4 rounded-xl bg-bg-elevated p-6 shadow-[0_1px_2px_rgba(28,25,23,0.06),0_6px_20px_rgba(28,25,23,0.05)] sm:gap-5 sm:p-8"
 						>

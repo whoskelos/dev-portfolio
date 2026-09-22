@@ -86,28 +86,12 @@
     "subtitle": "Páginas web desarrolladas para clientes reales.",
     "items": [
       {
-        "image": "recambios-las-margaritas",
-        "client": "Recambios Las Margaritas",
-        "title": "Página web corporativa",
-        "highlight": "Catálogo de recambios y contacto directo",
-        "tags": ["Astro", "Tailwind CSS"],
-        "url": ""
-      },
-      {
         "image": "aeriatrois",
         "client": "Aeriatrois",
-        "title": "Página web corporativa",
-        "highlight": "Presencia digital para empresa aeronáutica",
+        "title": "Página web para grupo artístico",
+        "highlight": "Espectáculos aéreos con telas y aro",
         "tags": ["Astro", "Tailwind CSS"],
-        "url": ""
-      },
-      {
-        "image": "cybermil",
-        "client": "Cybermil",
-        "title": "Página web corporativa",
-        "highlight": "Web institucional con enfoque en servicios",
-        "tags": ["WordPress"],
-        "url": ""
+        "url": "https://www.aeriatrois.es/"
       },
       {
         "image": "barreto-construcciones",
@@ -115,7 +99,23 @@
         "title": "Página web corporativa",
         "highlight": "Portfolio de obras y captación de clientes",
         "tags": ["Astro", "Tailwind CSS"],
-        "url": ""
+        "url": "https://www.barretoconstrucciones.es/"
+      },
+      {
+        "image": "cybermil",
+        "client": "Cybermil",
+        "title": "Página web para empresa de servicios informáticos",
+        "highlight": "Soluciones y servicios informáticos",
+        "tags": ["WordPress"],
+        "url": "https://www.cybermil.es/"
+      },
+      {
+        "image": "recambios-las-margaritas",
+        "client": "Recambios Las Margaritas",
+        "title": "Landing page para empresa local de recambios",
+        "highlight": "Recambios de coches",
+        "tags": ["Astro", "Tailwind CSS"],
+        "url": "https://recambioslasmargaritas.es/"
       }
     ]
   },
@@ -145,10 +145,10 @@
     "id": "contacto",
     "title": "¿Tienes un proyecto web o proceso por automatizar?",
     "description": "Cuéntame qué necesitas y te responderé en menos de 24 horas con una propuesta clara y un plazo concreto.",
-    "email": "hola@kelvinguerrero.dev",
+    "email": "contacto@kelvinguerrero.dev",
     "button": {
       "label": "Solicitar presupuesto sin compromiso",
-      "href": "mailto:hola@kelvinguerrero.dev"
+      "href": "mailto:contacto@kelvinguerrero.dev"
     }
   },
   "footer": {

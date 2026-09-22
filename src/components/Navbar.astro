@@ -4,11 +4,8 @@ import content from '../data/content.json';
 const { site, navbar } = content;
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
-	<nav
-		class="relative mx-auto flex max-w-3xl items-center justify-between rounded-full border border-border-subtle bg-bg-elevated px-3 py-2 sm:max-w-4xl sm:px-5 sm:py-2.5"
-		aria-label="Principal"
-	>
+<header data-navbar class="navbar fixed inset-x-0 top-0 z-50">
+	<nav class="navbar__inner mx-auto flex items-center justify-between border" aria-label="Principal">
 		<a href="/" class="flex min-w-0 items-center gap-2.5 sm:gap-3">
 			<span
 				class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-sm font-semibold text-white sm:size-9"
@@ -44,3 +41,5 @@ const { site, navbar } = content;
 		</a>
 	</nav>
 </header>
+
+<script src="../scripts/navbar.ts"></script>

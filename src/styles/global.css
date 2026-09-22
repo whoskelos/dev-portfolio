@@ -3,6 +3,14 @@
 
 @theme {
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-reveal: 650ms;
+  --reveal-distance: 32px;
+  --duration-hero: 400ms;
+  --duration-navbar: 350ms;
+  --navbar-scroll-range: 96px;
   /* Backgrounds (60%) */
   --color-bg-base: #f5f5f0;
   --color-bg-surface: #eaeae3;
@@ -32,5 +40,277 @@
   ::selection {
     background-color: var(--color-brand-soft);
     color: var(--color-text-main);
+  }
+}
+
+@layer components {
+  /* Navbar — integrated at top, floating pill on scroll */
+  .navbar {
+    --navbar-shell-px: 1rem;
+    --navbar-shell-pt: 1.5rem;
+    --navbar-shell-px-end: 1rem;
+    --navbar-shell-pt-end: 1rem;
+
+    padding-inline: var(--navbar-shell-px);
+    padding-top: var(--navbar-shell-pt);
+  }
+
+  @media (min-width: 640px) {
+    .navbar {
+      --navbar-shell-px: 1.5rem;
+      --navbar-shell-pt: 2rem;
+      --navbar-shell-px-end: 1.5rem;
+      --navbar-shell-pt-end: 1.5rem;
+    }
+  }
+
+  .navbar__inner {
+    position: relative;
+    width: 100%;
+    max-width: 72rem;
+    border-color: transparent;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding-block: 1rem;
+    padding-inline: 0;
+  }
+
+  @keyframes navbar-shell {
+    to {
+      padding-inline: var(--navbar-shell-px-end);
+      padding-top: var(--navbar-shell-pt-end);
+    }
+  }
+
+  @keyframes navbar-panel {
+    to {
+      max-width: 56rem;
+      border-color: var(--color-border-subtle);
+      background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+      border-radius: 9999px;
+      box-shadow:
+        0 1px 2px rgb(28 25 23 / 0.04),
+        0 8px 24px rgb(28 25 23 / 0.06);
+      padding-block: 0.625rem;
+      padding-inline: 1.25rem;
+      backdrop-filter: blur(12px);
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .navbar {
+      animation: navbar-shell linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 var(--navbar-scroll-range);
+    }
+
+    .navbar__inner {
+      animation: navbar-panel linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 var(--navbar-scroll-range);
+    }
+  }
+
+  @supports not (animation-timeline: scroll()) {
+    .navbar__inner {
+      transition:
+        max-width var(--duration-navbar) var(--ease-out),
+        border-color var(--duration-navbar) var(--ease-out),
+        background-color var(--duration-navbar) var(--ease-out),
+        border-radius var(--duration-navbar) var(--ease-out),
+        box-shadow var(--duration-navbar) var(--ease-out),
+        padding var(--duration-navbar) var(--ease-out),
+        backdrop-filter var(--duration-navbar) var(--ease-out);
+    }
+
+    [data-navbar-scrolled] .navbar__inner {
+      max-width: 56rem;
+      border-color: var(--color-border-subtle);
+      background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+      border-radius: 9999px;
+      box-shadow:
+        0 1px 2px rgb(28 25 23 / 0.04),
+        0 8px 24px rgb(28 25 23 / 0.06);
+      padding-block: 0.625rem;
+      padding-inline: 1.25rem;
+      backdrop-filter: blur(12px);
+    }
+  }
+
+  /* Hero — entrance on first paint */
+  .hero-enter {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: hero-enter var(--duration-hero) var(--ease-out) forwards;
+  }
+
+  .hero-enter-1 {
+    animation-delay: 0ms;
+  }
+  .hero-enter-2 {
+    animation-delay: 70ms;
+  }
+  .hero-enter-3 {
+    animation-delay: 140ms;
+  }
+  .hero-enter-4 {
+    animation-delay: 210ms;
+  }
+  .hero-enter-5 {
+    animation-delay: 280ms;
+  }
+
+  @keyframes hero-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll reveal — progress tied to scroll position */
+  @keyframes reveal-scroll {
+    from {
+      opacity: 0;
+      transform: translateY(var(--reveal-distance));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    [data-reveal] .reveal-header,
+    [data-reveal] .reveal-item {
+      animation: reveal-scroll linear both;
+      animation-timeline: view();
+    }
+
+    [data-reveal] .reveal-header {
+      animation-range: entry 0% entry 85%;
+    }
+
+    [data-reveal] .reveal-item:nth-child(1) {
+      animation-range: entry 8% entry 92%;
+    }
+    [data-reveal] .reveal-item:nth-child(2) {
+      animation-range: entry 16% entry 100%;
+    }
+    [data-reveal] .reveal-item:nth-child(3) {
+      animation-range: entry 24% entry 100%;
+    }
+    [data-reveal] .reveal-item:nth-child(4) {
+      animation-range: entry 32% entry 100%;
+    }
+    [data-reveal] .reveal-item:nth-child(5) {
+      animation-range: entry 40% entry 100%;
+    }
+    [data-reveal] .reveal-item:nth-child(6) {
+      animation-range: entry 48% entry 100%;
+    }
+
+    [data-reveal-visible] .reveal-header,
+    [data-reveal-visible] .reveal-item {
+      animation: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fallback — browsers without scroll-driven animations */
+  @supports not (animation-timeline: view()) {
+    [data-reveal]:not([data-reveal-visible]) .reveal-header,
+    [data-reveal]:not([data-reveal-visible]) .reveal-item {
+      opacity: 0;
+      transform: translateY(var(--reveal-distance));
+    }
+
+    [data-reveal-visible] .reveal-header,
+    [data-reveal-visible] .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity var(--duration-reveal) var(--ease-out),
+        transform var(--duration-reveal) var(--ease-out);
+    }
+
+    [data-reveal-visible] .reveal-item:nth-child(2) {
+      transition-delay: 60ms;
+    }
+    [data-reveal-visible] .reveal-item:nth-child(3) {
+      transition-delay: 120ms;
+    }
+    [data-reveal-visible] .reveal-item:nth-child(4) {
+      transition-delay: 180ms;
+    }
+    [data-reveal-visible] .reveal-item:nth-child(5) {
+      transition-delay: 240ms;
+    }
+    [data-reveal-visible] .reveal-item:nth-child(6) {
+      transition-delay: 300ms;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .navbar__inner {
+      animation: none;
+    }
+
+    .navbar__inner {
+      transition: none;
+    }
+
+    [data-navbar-scrolled] .navbar__inner {
+      max-width: 56rem;
+      border-color: var(--color-border-subtle);
+      background-color: var(--color-bg-elevated);
+      border-radius: 9999px;
+      box-shadow: 0 1px 2px rgb(28 25 23 / 0.04);
+      padding-block: 0.625rem;
+      padding-inline: 1.25rem;
+    }
+
+    .hero-enter {
+      transform: none;
+      animation: hero-enter-reduced 300ms ease forwards;
+    }
+
+    @keyframes hero-enter-reduced {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes reveal-scroll-reduced {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @supports (animation-timeline: view()) {
+      [data-reveal] .reveal-header,
+      [data-reveal] .reveal-item {
+        animation-name: reveal-scroll-reduced;
+      }
+    }
+
+    @supports not (animation-timeline: view()) {
+      [data-reveal]:not([data-reveal-visible]) .reveal-header,
+      [data-reveal]:not([data-reveal-visible]) .reveal-item {
+        transform: none;
+      }
+
+      [data-reveal-visible] .reveal-header,
+      [data-reveal-visible] .reveal-item {
+        transition-duration: 250ms;
+        transition-timing-function: ease;
+      }
+
+      [data-reveal-visible] .reveal-item:nth-child(n) {
+        transition-delay: 0ms;
+      }
+    }
   }
 }

@@ -14,8 +14,9 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-bg-base font-sans text-text-main">
+	<body class="bg-bg-base pb-[min(20vh,8rem)] font-sans text-text-main">
 		<slot />
+		<script src="../scripts/reveal.ts"></script>
 	</body>
 </html>
 
