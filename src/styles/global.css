@@ -35,6 +35,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 5.5rem;
   }
 
   ::selection {
@@ -44,6 +45,64 @@
 }
 
 @layer components {
+  .section-block {
+    padding-inline: 1rem;
+    padding-block: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-block {
+      padding-inline: 1.5rem;
+      padding-block: 6rem;
+    }
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    color: var(--color-text-main);
+  }
+
+  .section-lead {
+    margin-top: 1rem;
+    max-width: 42rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .section-lead {
+      margin-top: 1.25rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-header {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .card-copy {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .card-copy {
+      font-size: 1rem;
+    }
+  }
+
   /* Navbar — integrated at top, floating pill on scroll */
   .navbar {
     --navbar-shell-px: 1rem;
@@ -136,6 +195,124 @@
       padding-inline: 1.25rem;
       backdrop-filter: blur(12px);
     }
+  }
+
+  .navbar__toggle {
+    position: relative;
+  }
+
+  .navbar__icon-close {
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out);
+  }
+
+  .navbar__icon-menu {
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out);
+  }
+
+  [data-nav-open] .navbar__icon-menu {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  [data-nav-open] .navbar__icon-close {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .navbar__drawer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .navbar__drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background-color: rgb(28 25 23 / 0.24);
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  .navbar__drawer-panel {
+    position: absolute;
+    inset-inline: 1rem;
+    top: calc(var(--navbar-shell-pt) + 4.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 1rem;
+    background-color: var(--color-bg-elevated);
+    box-shadow:
+      0 1px 2px rgb(28 25 23 / 0.04),
+      0 16px 40px rgb(28 25 23 / 0.1);
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition:
+      opacity 300ms var(--ease-out),
+      transform 300ms var(--ease-out);
+  }
+
+  [data-nav-open] .navbar__drawer {
+    pointer-events: auto;
+  }
+
+  [data-nav-open] .navbar__drawer-backdrop {
+    opacity: 1;
+  }
+
+  [data-nav-open] .navbar__drawer-panel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navbar__drawer-link {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding-inline: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text-main);
+    transition: background-color 200ms var(--ease-out);
+  }
+
+  .navbar__drawer-link:hover,
+  .navbar__drawer-link:focus-visible {
+    background-color: var(--color-bg-surface);
+    outline: none;
+  }
+
+  .navbar__drawer-cta {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background-color: var(--color-brand-primary);
+    padding-inline: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: background-color 200ms var(--ease-out);
+  }
+
+  .navbar__drawer-cta:hover,
+  .navbar__drawer-cta:focus-visible {
+    background-color: var(--color-brand-hover);
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
   }
 
   /* Hero — entrance on first paint */
@@ -256,6 +433,14 @@
     .navbar,
     .navbar__inner {
       animation: none;
+    }
+
+    .navbar__inner,
+    .navbar__drawer-backdrop,
+    .navbar__drawer-panel,
+    .navbar__icon-menu,
+    .navbar__icon-close {
+      transition: none;
     }
 
     .navbar__inner {

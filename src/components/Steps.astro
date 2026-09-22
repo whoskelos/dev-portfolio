@@ -4,15 +4,18 @@ import content from '../data/content.json';
 const { steps } = content;
 ---
 
-<section id={steps.id} data-reveal class="bg-bg-surface px-4 py-16 sm:px-6 sm:py-24">
+<section id={steps.id} data-reveal class="section-block bg-bg-surface">
 	<div class="mx-auto max-w-6xl">
-		<h2
-			class="reveal-header max-w-3xl text-3xl leading-tight font-bold tracking-[-0.03em] text-balance text-text-main sm:text-4xl"
-		>
-			{steps.title}
-		</h2>
+		<header class="section-header reveal-header max-w-3xl">
+			<h2 class="section-title">{steps.title}</h2>
+			{
+				steps.subtitle && (
+					<p class="section-lead">{steps.subtitle}</p>
+				)
+			}
+		</header>
 
-		<ol class="mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 md:gap-5">
+		<ol class="grid gap-5 md:grid-cols-2 md:gap-6">
 			{
 				steps.items.map((step, index) => (
 					<li class="reveal-item">
@@ -25,13 +28,11 @@ const { steps } = content;
 							>
 								{index + 1}
 							</span>
-							<div class="min-w-0">
-								<h3 class="text-lg font-bold tracking-[-0.02em] text-text-main">
+							<div class="min-w-0 flex-1">
+								<h3 class="text-lg font-bold tracking-[-0.02em] text-text-main sm:text-xl">
 									{step.title}
 								</h3>
-								<p class="mt-2 text-base leading-relaxed text-text-muted">
-									{step.description}
-								</p>
+								<p class="card-copy mt-2">{step.description}</p>
 							</div>
 						</article>
 					</li>

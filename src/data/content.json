@@ -122,6 +122,7 @@
   "steps": {
     "id": "proceso",
     "title": "Un proceso simple, sin fricción",
+    "subtitle": "De la primera llamada al lanzamiento, sabes qué esperar en cada fase.",
     "items": [
       {
         "title": "Llamada de valoración (15-20 min)",
