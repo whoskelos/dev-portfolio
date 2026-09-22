@@ -1,6 +1,8 @@
 @import "@fontsource-variable/manrope";
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
 
@@ -25,6 +27,7 @@
   --color-brand-primary: #059669;
   --color-brand-hover: #047857;
   --color-brand-soft: #e6f4ea;
+  --color-brand-text-soft: #059669;
 
   /* Borders */
   --color-border-subtle: #e7e5e4;
@@ -36,11 +39,33 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-padding-top: 5.5rem;
+    color-scheme: light;
+    --shadow-ink: 28 25 23;
+  }
+
+  html.dark {
+    color-scheme: dark;
+    --shadow-ink: 18 18 16;
+    --color-bg-base: #121210;
+    --color-bg-surface: #1c1917;
+    --color-bg-elevated: #292524;
+    --color-text-main: #f5f5f0;
+    --color-text-muted: #a8a29e;
+    --color-text-light: #78716c;
+    --color-brand-primary: #10b981;
+    --color-brand-hover: #059669;
+    --color-brand-soft: #064e3b;
+    --color-brand-text-soft: #a7f3d0;
+    --color-border-subtle: #292524;
   }
 
   ::selection {
     background-color: var(--color-brand-soft);
     color: var(--color-text-main);
+  }
+
+  html.dark ::selection {
+    color: var(--color-brand-text-soft);
   }
 }
 
@@ -149,8 +174,8 @@
       background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
       border-radius: 9999px;
       box-shadow:
-        0 1px 2px rgb(28 25 23 / 0.04),
-        0 8px 24px rgb(28 25 23 / 0.06);
+        0 1px 2px rgb(var(--shadow-ink) / 0.04),
+        0 8px 24px rgb(var(--shadow-ink) / 0.06);
       padding-block: 0.625rem;
       padding-inline: 1.25rem;
       backdrop-filter: blur(12px);
@@ -189,8 +214,8 @@
       background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
       border-radius: 9999px;
       box-shadow:
-        0 1px 2px rgb(28 25 23 / 0.04),
-        0 8px 24px rgb(28 25 23 / 0.06);
+        0 1px 2px rgb(var(--shadow-ink) / 0.04),
+        0 8px 24px rgb(var(--shadow-ink) / 0.06);
       padding-block: 0.625rem;
       padding-inline: 1.25rem;
       backdrop-filter: blur(12px);
@@ -199,6 +224,34 @@
 
   .navbar__toggle {
     position: relative;
+  }
+
+  .theme-toggle {
+    position: relative;
+  }
+
+  .theme-toggle__sun {
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out);
+  }
+
+  .theme-toggle__moon {
+    transition:
+      opacity 200ms var(--ease-out),
+      transform 200ms var(--ease-out);
+  }
+
+  html.dark .theme-toggle__moon {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  html.dark .theme-toggle__sun {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .navbar__icon-close {
@@ -236,7 +289,7 @@
     position: absolute;
     inset: 0;
     border: 0;
-    background-color: rgb(28 25 23 / 0.24);
+    background-color: rgb(var(--shadow-ink) / 0.24);
     opacity: 0;
     transition: opacity 300ms var(--ease-out);
   }
@@ -253,8 +306,8 @@
     border-radius: 1rem;
     background-color: var(--color-bg-elevated);
     box-shadow:
-      0 1px 2px rgb(28 25 23 / 0.04),
-      0 16px 40px rgb(28 25 23 / 0.1);
+      0 1px 2px rgb(var(--shadow-ink) / 0.04),
+      0 16px 40px rgb(var(--shadow-ink) / 0.1);
     opacity: 0;
     transform: translateY(-0.5rem);
     transition:
@@ -439,7 +492,9 @@
     .navbar__drawer-backdrop,
     .navbar__drawer-panel,
     .navbar__icon-menu,
-    .navbar__icon-close {
+    .navbar__icon-close,
+    .theme-toggle__sun,
+    .theme-toggle__moon {
       transition: none;
     }
 
@@ -452,7 +507,7 @@
       border-color: var(--color-border-subtle);
       background-color: var(--color-bg-elevated);
       border-radius: 9999px;
-      box-shadow: 0 1px 2px rgb(28 25 23 / 0.04);
+      box-shadow: 0 1px 2px rgb(var(--shadow-ink) / 0.04);
       padding-block: 0.625rem;
       padding-inline: 1.25rem;
     }

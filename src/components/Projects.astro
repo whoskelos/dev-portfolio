@@ -27,17 +27,17 @@ const images: Record<string, ImageMetadata> = {
 			}
 		</header>
 
-		<ul class="grid gap-6 md:grid-cols-2">
+		<ul class="grid items-stretch gap-6 md:grid-cols-2">
 			{
 				projects.items.map((project) => {
 					const href = project.url || undefined;
 					const Tag = href ? 'a' : 'article';
 
 					return (
-						<li class="reveal-item">
+						<li class="reveal-item h-full">
 							<Tag
 								{...(href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {})}
-								class="group block cursor-pointer overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(28,25,23,0.06),0_12px_32px_rgba(28,25,23,0.08)] focus-within:shadow-[0_2px_8px_rgba(28,25,23,0.06),0_12px_32px_rgba(28,25,23,0.08)]"
+								class="group flex h-full flex-col cursor-pointer overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated transition-shadow duration-300 hover:shadow-[0_2px_8px_rgb(var(--shadow-ink)_/_0.06),0_12px_32px_rgb(var(--shadow-ink)_/_0.08)] focus-within:shadow-[0_2px_8px_rgb(var(--shadow-ink)_/_0.06),0_12px_32px_rgb(var(--shadow-ink)_/_0.08)]"
 							>
 								<div class="relative aspect-[16/10] overflow-hidden bg-text-main">
 									<Image
@@ -55,7 +55,7 @@ const images: Record<string, ImageMetadata> = {
 									</span>
 								</div>
 
-								<div class="p-5 sm:p-6">
+								<div class="flex flex-1 flex-col p-5 sm:p-6">
 									<p class="text-xs font-semibold tracking-[0.12em] text-text-light uppercase">
 										{project.client}
 									</p>
@@ -66,7 +66,7 @@ const images: Record<string, ImageMetadata> = {
 										{project.highlight}
 									</p>
 									<span
-										class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-primary transition-colors duration-200 group-hover:text-brand-hover"
+										class="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-brand-primary transition-colors duration-200 group-hover:text-brand-hover"
 										aria-hidden="true"
 									>
 										Ver sitio
