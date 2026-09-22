@@ -10,8 +10,6 @@ const navLinks = navbar.querySelectorAll<HTMLElement>('[data-nav-link]');
 if (!toggle || !toggleLabel || !panel) throw new Error('Mobile nav elements not found');
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const supportsScrollTimeline =
-	!prefersReducedMotion && CSS.supports('animation-timeline', 'scroll()');
 const scrollThreshold = 96;
 const drawerTransitionMs = prefersReducedMotion ? 0 : 300;
 
@@ -107,7 +105,5 @@ window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
 	if (event.matches && isOpen) setOpen(false);
 });
 
-if (!supportsScrollTimeline) {
-	updateNavbarScroll();
-	window.addEventListener('scroll', updateNavbarScroll, { passive: true });
-}
+updateNavbarScroll();
+window.addEventListener('scroll', updateNavbarScroll, { passive: true });

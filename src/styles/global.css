@@ -12,7 +12,6 @@
   --reveal-distance: 32px;
   --duration-hero: 400ms;
   --duration-navbar: 350ms;
-  --navbar-scroll-range: 96px;
   /* Backgrounds (60%) */
   --color-bg-base: #f5f5f0;
   --color-bg-surface: #eaeae3;
@@ -137,6 +136,9 @@
 
     padding-inline: var(--navbar-shell-px);
     padding-top: var(--navbar-shell-pt);
+    transition:
+      padding-inline var(--duration-navbar) var(--ease-out),
+      padding-top var(--duration-navbar) var(--ease-out);
   }
 
   @media (min-width: 640px) {
@@ -158,68 +160,32 @@
     box-shadow: none;
     padding-block: 1rem;
     padding-inline: 0;
+    transition:
+      max-width var(--duration-navbar) var(--ease-out),
+      border-color var(--duration-navbar) var(--ease-out),
+      background-color var(--duration-navbar) var(--ease-out),
+      border-radius var(--duration-navbar) var(--ease-out),
+      box-shadow var(--duration-navbar) var(--ease-out),
+      padding var(--duration-navbar) var(--ease-out),
+      backdrop-filter var(--duration-navbar) var(--ease-out);
   }
 
-  @keyframes navbar-shell {
-    to {
-      padding-inline: var(--navbar-shell-px-end);
-      padding-top: var(--navbar-shell-pt-end);
-    }
+  [data-navbar-scrolled] {
+    padding-inline: var(--navbar-shell-px-end);
+    padding-top: var(--navbar-shell-pt-end);
   }
 
-  @keyframes navbar-panel {
-    to {
-      max-width: 56rem;
-      border-color: var(--color-border-subtle);
-      background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
-      border-radius: 9999px;
-      box-shadow:
-        0 1px 2px rgb(var(--shadow-ink) / 0.04),
-        0 8px 24px rgb(var(--shadow-ink) / 0.06);
-      padding-block: 0.625rem;
-      padding-inline: 1.25rem;
-      backdrop-filter: blur(12px);
-    }
-  }
-
-  @supports (animation-timeline: scroll()) {
-    .navbar {
-      animation: navbar-shell linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0 var(--navbar-scroll-range);
-    }
-
-    .navbar__inner {
-      animation: navbar-panel linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0 var(--navbar-scroll-range);
-    }
-  }
-
-  @supports not (animation-timeline: scroll()) {
-    .navbar__inner {
-      transition:
-        max-width var(--duration-navbar) var(--ease-out),
-        border-color var(--duration-navbar) var(--ease-out),
-        background-color var(--duration-navbar) var(--ease-out),
-        border-radius var(--duration-navbar) var(--ease-out),
-        box-shadow var(--duration-navbar) var(--ease-out),
-        padding var(--duration-navbar) var(--ease-out),
-        backdrop-filter var(--duration-navbar) var(--ease-out);
-    }
-
-    [data-navbar-scrolled] .navbar__inner {
-      max-width: 56rem;
-      border-color: var(--color-border-subtle);
-      background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
-      border-radius: 9999px;
-      box-shadow:
-        0 1px 2px rgb(var(--shadow-ink) / 0.04),
-        0 8px 24px rgb(var(--shadow-ink) / 0.06);
-      padding-block: 0.625rem;
-      padding-inline: 1.25rem;
-      backdrop-filter: blur(12px);
-    }
+  [data-navbar-scrolled] .navbar__inner {
+    max-width: 56rem;
+    border-color: var(--color-border-subtle);
+    background-color: color-mix(in srgb, var(--color-bg-elevated) 92%, transparent);
+    border-radius: 9999px;
+    box-shadow:
+      0 1px 2px rgb(var(--shadow-ink) / 0.04),
+      0 8px 24px rgb(var(--shadow-ink) / 0.06);
+    padding-block: 0.625rem;
+    padding-inline: 1.25rem;
+    backdrop-filter: blur(12px);
   }
 
   .navbar__toggle {
@@ -484,10 +450,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     .navbar,
-    .navbar__inner {
-      animation: none;
-    }
-
     .navbar__inner,
     .navbar__drawer-backdrop,
     .navbar__drawer-panel,
@@ -495,10 +457,6 @@
     .navbar__icon-close,
     .theme-toggle__sun,
     .theme-toggle__moon {
-      transition: none;
-    }
-
-    .navbar__inner {
       transition: none;
     }
 
