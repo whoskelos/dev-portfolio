@@ -10,14 +10,33 @@ const navLinks = navbar.querySelectorAll<HTMLElement>('[data-nav-link]');
 if (!toggle || !toggleLabel || !panel) throw new Error('Mobile nav elements not found');
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const scrollThreshold = 96;
+const scrollEnterAt = 96;
+const scrollExitAt = 48;
 const drawerTransitionMs = prefersReducedMotion ? 0 : 300;
 
 let isOpen = false;
 let closeTimer: ReturnType<typeof setTimeout> | undefined;
+let scrollTicking = false;
+let isScrolled = false;
 
 function updateNavbarScroll() {
-	navbar.toggleAttribute('data-navbar-scrolled', window.scrollY >= scrollThreshold);
+	const y = window.scrollY;
+	const nextScrolled = isScrolled ? y > scrollExitAt : y >= scrollEnterAt;
+
+	if (nextScrolled === isScrolled) return;
+
+	isScrolled = nextScrolled;
+	navbar.toggleAttribute('data-navbar-scrolled', isScrolled);
+}
+
+function scheduleNavbarScroll() {
+	if (scrollTicking) return;
+
+	scrollTicking = true;
+	requestAnimationFrame(() => {
+		scrollTicking = false;
+		updateNavbarScroll();
+	});
 }
 
 function getFocusableElements() {
@@ -106,4 +125,4 @@ window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
 });
 
 updateNavbarScroll();
-window.addEventListener('scroll', updateNavbarScroll, { passive: true });
+window.addEventListener('scroll', scheduleNavbarScroll, { passive: true });

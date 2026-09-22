@@ -37,20 +37,20 @@ const images: Record<string, ImageMetadata> = {
 						<li class="reveal-item h-full">
 							<Tag
 								{...(href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {})}
-								class="group flex h-full flex-col cursor-pointer overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated transition-shadow duration-300 hover:shadow-[0_2px_8px_rgb(var(--shadow-ink)_/_0.06),0_12px_32px_rgb(var(--shadow-ink)_/_0.08)] focus-within:shadow-[0_2px_8px_rgb(var(--shadow-ink)_/_0.06),0_12px_32px_rgb(var(--shadow-ink)_/_0.08)]"
+								class="project-card group flex h-full flex-col cursor-pointer overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated"
 							>
 								<div class="relative aspect-[16/10] overflow-hidden bg-text-main">
 									<Image
 										src={images[project.image]}
 										alt={`Captura del sitio web de ${project.client}`}
-										class="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-within:scale-[1.04]"
+										class="project-card__image h-full w-full object-cover object-top"
 										loading="lazy"
 									/>
 									<div
-										class="absolute inset-0 bg-text-main/30 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
+										class="project-card__veil absolute inset-0 bg-text-main/30"
 										aria-hidden="true"
 									/>
-									<span class="absolute top-4 left-4 rounded-full border border-border-subtle bg-bg-elevated/95 px-3 py-1 text-xs font-medium text-text-muted opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
+									<span class="project-card__tags absolute top-4 left-4 rounded-full border border-border-subtle bg-bg-elevated/95 px-3 py-1 text-xs font-medium text-text-muted">
 										{project.tags.join(' · ')}
 									</span>
 								</div>
